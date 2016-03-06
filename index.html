@@ -1,20 +1,60 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>My Angular App</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet" data-require="bootstrap-css@3.3.6" data-semver="3.3.6" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" data-require="jquery@*" data-semver="2.2.0"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" data-require="bootstrap@3.3.6" data-semver="3.3.6"></script>
+    <script data-require="angular.js@~1.4.3" data-semver="1.4.9" src="https://code.angularjs.org/1.4.9/angular.js"></script>
+    <script data-require="angular-sanitize@*" data-semver="1.4.3" src="https://code.angularjs.org/1.4.3/angular-sanitize.js"></script>
+    <link href="style.css" rel="stylesheet" />
+    <script src="script.js"></script>
 </head>
-<body ng-app>
-    <h1 class="jumbotron">My Angular App</h1>
-    <div class="col-md-4">
-        <input class="form-control" type="text" ng-model="testModel" />
-        <p>{{"This is the testModel Data:" + testModel}}</p>
+<body ng-app="root">
+    <div class="col-md-12" ng-controller="AppController">
+        <h1 class="alert alert-info">{{message}}</h1>
     </div>
 
+    <div class="col-md-6" ng-controller="AppController">
+        <br />
+        <p>{{"This is my input Data: " + testModel}}</p>
+        <br />
+        <input class="form-control" type="text" ng-model="testModel" />
+        <br />
+        <button class="btn btn-default" ng-click="button1">{{buttonName}}</button>
+    </div>
+
+    <!--
+    <div class="col-md-6" ng-controller="NameController">
+      <br />
+      <p>Attributes of an object from NameController: {{person.firstName}} {{person.lastName}}</p>
+      <p>A picture of a phoenix using ng-src:</p>
+      <img ng-src="{{person.imgSource}}" title="{{person.firstName}} {{person.lastName}}" width="10%" />
+    </div>
+    -->
+
+    <div class="col-md-12" ng-controller="httpController">
+        <p>
+            <a ng-href="{{api.url}}"></a>
+        </p>
+        <h3>
+            <a ng-href="{{api.url}}">Github API</a>
+        </h3>
+        <p>
+            This image and associated Github username below are pulled from https://api.github.com/users/valkyss/
+            <br />
+            There is an html injected error setup to display below that shows only if the $http GET returns an error.
+        </p>
+        <div>
+            <button class="btn btn-default" ng-click="breakAPI()">Break API</button>
+            <button class="btn btn-default" ng-click="fixAPI()">Fix API</button>
+        </div>
+        <br />
+        <div id="apiDataDiv">
+            <img ng-src="{{api.avatar_url}}" title="{{api.login}}" width="40px" /><b>{{api.login}}</b>
+        </div>
+        <div ng-bind-html="errorHtml"></div>
+        <p></p>
+    </div>
 </body>
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
 </html>
