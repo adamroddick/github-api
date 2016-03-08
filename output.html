@@ -1,0 +1,24 @@
+﻿<div id="apiDataDiv">
+    <select class="form-control" style="width:15%" ng-model="sortOrder">
+        <option value="+name">Name</option>
+        <option value="-stargazers_count">Stars</option>
+        <option value="+created_at">Created</option>
+    </select>
+    <br />
+    <img ng-src="{{api.avatar_url}}" title="{{api.login}}" width="40px" /><b>{{" " + api.login}}</b>
+    <table class="table">
+        <thead>
+            <tr>
+                <th><a href="" ng-click="">Name</a></th>
+                <th><a href="" ng-click="">Stars</a></th>
+                <th><a href="" ng-click="">Created</a></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="repo in repos | orderBy:sortOrder">
+                <td>{{repo.name}}</td>
+                <td>{{repo.stargazers_count | number}}</td>
+                <td>{{repo.created_at | date:'dd/MM/yyyy'}}</td>
+        </tbody>
+    </table>
+</div>

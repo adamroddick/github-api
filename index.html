@@ -14,8 +14,7 @@
     <div class="col-md-12" ng-controller="AppController">
         <h1 class="alert alert-info">{{message}}</h1>
     </div>
-
-    <div class="col-md-6" ng-controller="AppController">
+    <div class="col-md-3" ng-controller="AppController">
         <br />
         <p>{{"This is my input Data: " + testModel}}</p>
         <br />
@@ -23,36 +22,24 @@
         <br />
         <button class="btn btn-default" ng-click="button1">{{buttonName}}</button>
     </div>
-
-    <!--
-    <div class="col-md-6" ng-controller="NameController">
-      <br />
-      <p>Attributes of an object from NameController: {{person.firstName}} {{person.lastName}}</p>
-      <p>A picture of a phoenix using ng-src:</p>
-      <img ng-src="{{person.imgSource}}" title="{{person.firstName}} {{person.lastName}}" width="10%" />
-    </div>
-    -->
-
     <div class="col-md-12" ng-controller="httpController">
-        <p>
-            <a ng-href="{{api.url}}"></a>
-        </p>
-        <h3>
-            <a ng-href="{{api.url}}">Github API</a>
-        </h3>
-        <p>
-            This image and associated Github username below are pulled from https://api.github.com/users/valkyss/
-            <br />
-            There is an html injected error setup to display below that shows only if the $http GET returns an error.
-        </p>
         <div>
-            <button class="btn btn-default" ng-click="breakAPI()">Break API</button>
-            <button class="btn btn-default" ng-click="fixAPI()">Fix API</button>
+            <h3>
+                <a ng-href="{{api.url}}">Github API</a>
+            </h3>
+            <button class="btn btn-default" ng-click="breakAPI()">Break API URL</button>
+            <button class="btn btn-default" ng-click="fixAPI()">Fix API URL</button>
         </div>
         <br />
-        <div id="apiDataDiv">
-            <img ng-src="{{api.avatar_url}}" title="{{api.login}}" width="40px" /><b>{{api.login}}</b>
-        </div>
+        <h3>Github User Search</h3>
+        <br />
+        <form name="searchUser" ng-submit="search(username)">
+            <input class="form-control" style="width:30%" type="search" required placeholder="Github user to query" ng-model="username" />
+            <br />
+            <input type="submit" class="btn btn-default" value="Search">
+        </form>
+        <br />
+        <div ng-include="'output.html'" ng-show="api"></div>
         <div ng-bind-html="errorHtml"></div>
         <p></p>
     </div>

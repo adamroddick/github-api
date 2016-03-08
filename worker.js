@@ -1,11 +1,11 @@
 ﻿var createWorker = function () {
 
     var task1 = function () {
-        console.log("Task1");
+        //console.log("Task1");
     };
 
     var job2 = function () {
-        console.log("Job2");
+        //console.log("Job2");
     };
 
     return {

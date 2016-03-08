@@ -3,7 +3,7 @@
 var root = angular.module('root', ['ngSanitize']); //ng-app in index.html
 
 root.controller('AppController', function ($scope) {
-    $scope.message = "Adam's Angular App";
+    $scope.message = "Angular App";
     $scope.buttonName = "Button";
 });
 
@@ -19,61 +19,67 @@ root.controller('NameController', function ($scope) {
 
 root.controller('httpController', function ($scope, $http, $sce) {
 
-    var githubAPIBroken = "https://ap.github.com/users/valkyss";
-    var githubAPIWorking = "https://api.github.com/users/valkyss";
+    var gituser;
+
+    var githubAPIBroken = "https://ap.github.com/users/";
+    var githubAPIWorking = "https://api.github.com/users/";
     var githubAPI = githubAPIWorking;
+
+    $scope.sortOrder = "-stargazers_count";
+
+    $scope.search = function (username) {
+        githubAPI = githubAPIWorking;
+        gituser = $scope.username;
+        hideError();
+        githubAPIGET(gituser);
+        $('#apiDataDiv').show();
+    };
 
     $scope.breakAPI = function () {
         githubAPI = githubAPIBroken;
         console.log("Breaking the API: " + githubAPI);
         //console.log("githubAPI: " + githubAPI + " and githubAPIBroken: " + githubAPIBroken);
-        hideAPIData();
+        $('#apiDataDiv').hide();
         githubAPIGET();
+        $('#error').show();
     };
 
     $scope.fixAPI = function () {
         githubAPI = githubAPIWorking;
+        //gituser = "valkyss";
         console.log("Fixing the API: " + githubAPI);
-        //console.log("githubAPI: " + githubAPI + " and githubAPIWorking: " + githubAPIWorking);
-        hideError();
-        githubAPIGET();
+        //hideError();
+        githubAPIGET(gituser);
     };
 
     var onComplete = function (response) {
         $scope.api = response.data;
         hideError();
-        showAPIData();
+        $('#apiDataDiv').show();
+        $http.get($scope.api.repos_url).then(onRepos, onError);
+    };
+
+    var onRepos = function (response) {
+        $scope.repos = response.data;
     };
 
     var onError = function (reason) {
-        showError();
-    };
-
-    var showError = function () {
-        var errorRaw = "<p class=\"alert alert-danger\">Alert: Could not fetch the API Data</p>";
+        var errorRaw = "<p id=\"error\" class=\"alert alert-danger\">Alert: Could not fetch the API Data</p>";
         $scope.errorHtml = $sce.trustAsHtml(errorRaw);
     };
 
     var hideError = function () {
-        var errorRaw = "";
-        $scope.errorHtml = $sce.trustAsHtml(errorRaw);
+        $('#error').hide();
+        //var errorRaw = "";
+        //$scope.errorHtml = $sce.trustAsHtml(errorRaw);
     };
 
-    var showAPIData = function () {
-        $('#apiDataDiv').show();
-    };
-
-    var hideAPIData = function () {
-        $('#apiDataDiv').hide();
-    };
-
-
-    var githubAPIGET = function () {
-        $http.get(githubAPI)
+    var githubAPIGET = function (gituser) {
+        $http.get(githubAPI + gituser)
         .then(onComplete, onError);
     };
 
-    githubAPIGET();
+    //githubAPIGET();
 });
 
 
