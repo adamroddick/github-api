@@ -32,6 +32,7 @@
         </div>
         <br />
         <h3>Github User Search</h3>
+        <span id="countdown">Time remaining to submit a search: {{countdown}}s</span>
         <br />
         <form name="searchUser" ng-submit="search(username)">
             <input class="form-control" style="width:30%" type="search" required placeholder="Github user to query" ng-model="username" />

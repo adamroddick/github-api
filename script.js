@@ -17,7 +17,7 @@ root.controller('NameController', function ($scope) {
     $scope.person = person;
 });
 
-root.controller('httpController', function ($scope, $http, $sce) {
+root.controller('httpController', function ($scope, $http, $sce, $interval, $log) {
 
     var gituser;
 
@@ -26,6 +26,19 @@ root.controller('httpController', function ($scope, $http, $sce) {
     var githubAPI = githubAPIWorking;
 
     $scope.sortOrder = "-stargazers_count";
+    $scope.countdown = 10;
+
+    var decrementCountdown = function () {
+        $scope.countdown -= 1;
+        if ($scope.countdown < 1) {
+            $scope.search($scope.username);
+        }
+    };
+
+    var countdownInterval = null;
+    var startCountdown = function () {
+        countdownInterval = $interval(decrementCountdown, 1000, $scope.countdown);
+    };
 
     $scope.search = function (username) {
         githubAPI = githubAPIWorking;
@@ -33,12 +46,18 @@ root.controller('httpController', function ($scope, $http, $sce) {
         hideError();
         githubAPIGET(gituser);
         $('#apiDataDiv').show();
+        $log.info("Searched Github for: " + gituser);
+
+        if (countdownInterval) {
+            $interval.cancel(countdownInterval);
+            $scope.countdown = null;
+            $('#countdown').hide();
+        }
     };
 
     $scope.breakAPI = function () {
         githubAPI = githubAPIBroken;
-        console.log("Breaking the API: " + githubAPI);
-        //console.log("githubAPI: " + githubAPI + " and githubAPIBroken: " + githubAPIBroken);
+        $log.info("Breaking the API: " + githubAPI);
         $('#apiDataDiv').hide();
         githubAPIGET();
         $('#error').show();
@@ -47,7 +66,7 @@ root.controller('httpController', function ($scope, $http, $sce) {
     $scope.fixAPI = function () {
         githubAPI = githubAPIWorking;
         //gituser = "valkyss";
-        console.log("Fixing the API: " + githubAPI);
+        $log.info("Fixing the API: " + githubAPI);
         //hideError();
         githubAPIGET(gituser);
     };
@@ -79,19 +98,25 @@ root.controller('httpController', function ($scope, $http, $sce) {
         .then(onComplete, onError);
     };
 
-    //githubAPIGET();
+    startCountdown();
+
 });
 
 
-/*
-var work = function() {
-  // do stuff
-};
+/* LOGGING ******
+    $log.log("Testing $log.log");
+    $log.info("Testing $log.info");
+    $log.error("Testing $log.error");
+    $log.warn("Testing $log.warn");
+    $log.debug("Testing $log.debug");
+    */
+
+/* 
 
 var doWork = function(x) {
-  console.log("Starting " + x + " function.");
+  $log("Starting " + x + " function.");
   x();
-  console.log("Finished " + x + " function.");
+  $log("Finished " + x + " function.");
 };
 
 doWork(work);
@@ -105,12 +130,12 @@ doWork(work);
 
         var task1 = function () {
             workerCount++
-            console.log("Task1 " + workerCount);
+            //$log("Task1 " + workerCount);
         };
 
         var job2 = function () {
             workerCount++
-            console.log("Job2 " + workerCount);
+            //$log("Job2 " + workerCount);
         };
 
         return {
