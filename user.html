@@ -1,8 +1,7 @@
-﻿<div id="apiDataDiv">
-    <br/>
+﻿<div>
     <div ng-bind-html="errorHtml"></div>
     <div id="outputDiv">
-        <img ng-src="{{api.avatar_url}}" title="{{api.login}}" width="40px" /><b>{{" " + api.login}}</b>
+        <img ng-src="{{api.avatar_url}}" title="{{api.login}}" width="40px" /><a href="{{api.html_url}}"<b>{{" " + api.login}}</b></a>
         <table class="table" style="width: auto;">
             <thead>
                 <tr ng-model="sortOrder">
@@ -18,6 +17,6 @@
                     <td>{{repo.created_at | date:'dd/MM/yyyy'}}</td>
             </tbody>
         </table>
-        <button class="btn btn-default" ng-click="goBack">Back</button>
+        <a href="/#/main">Back</a>
     </div>
 </div>

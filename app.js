@@ -11,6 +11,10 @@
                 templateUrl: "user.html",
                 controller: "UserController"
             })
+            .when("/user/:username/:reponame", {
+            templateUrl: "repo.html",
+            controller: "RepoController"
+            })
             .otherwise({ redirectTo: "/main" });
     });
 

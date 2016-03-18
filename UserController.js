@@ -2,7 +2,7 @@
 
 var app = angular.module('app');
 
-app.controller('UserController', function ($scope, $http, $sce, $log, $routeParams) {
+app.controller('UserController', function ($scope, $http, $sce, $log, $routeParams, $location) {
 
     var gituser;
     var githubAPIBroken = "https://ap.github.com/users/";
@@ -48,10 +48,6 @@ app.controller('UserController', function ($scope, $http, $sce, $log, $routePara
     var githubAPIGET = function (gituser) {
         $http.get(githubAPI + gituser)
         .then(onComplete, onError);
-    };
-
-    var goBack = function() {
-        $location.path("/main");
     };
 
     githubAPIGET($scope.username);
