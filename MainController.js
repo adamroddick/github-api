@@ -2,7 +2,9 @@
 
 var app = angular.module('app');
 
-app.controller('MainController', function ($scope, $interval, $log) {
+app.controller('MainController', function ($scope, $interval, $log, $routeParams, $location) {
+
+    $scope.countdown = 10;
 
     var decrementCountdown = function () {
         $scope.countdown -= 1;
@@ -18,19 +20,12 @@ app.controller('MainController', function ($scope, $interval, $log) {
     };
 
     $scope.search = function (username) {
-        githubAPI = githubAPIWorking;
-        gituser = $scope.username;
-        $('#apiDataDiv').show();
-        $log.info("Searched Github for: " + gituser);
-
         if (countdownInterval) {
             $interval.cancel(countdownInterval);
             $scope.countdown = null;
-            $('#countdown').hide();
+            //$('#countdown').hide();
         }
-        //code here for actually searching
-        //
-        //
+        $location.path("/user/" + username);
     };
 
     startCountdown();
