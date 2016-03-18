@@ -1,0 +1,8 @@
+﻿Click name of repo
+	get repo information 
+		see /repo/contributors
+		see /repo:openIssueCount
+
+New Route "/repo", templateUrl: "/repo/:username/:reponame" > New repo.html
+New RepoController
+

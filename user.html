@@ -1,19 +1,23 @@
 ﻿<div id="apiDataDiv">
-
-    <img ng-src="{{api.avatar_url}}" title="{{api.login}}" width="40px" /><b>{{" " + api.login}}</b>
-    <table class="table" style="width: auto;">
-        <thead>
-            <tr ng-model="sortOrder">
-                <th><a href="" ng-click="sortOrder = '+name'">Repository Name</a></th>
-                <th><a href="" ng-click="sortOrder = '-stargazers_count'">Stars</a></th>
-                <th><a href="" ng-click="sortOrder = '+created_at'">Created</a></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="repo in repos | orderBy:sortOrder">
-                <td>{{repo.name}}</td>
-                <td>{{repo.stargazers_count | number}}</td>
-                <td>{{repo.created_at | date:'dd/MM/yyyy'}}</td>
-        </tbody>
-    </table>
+    <br/>
+    <div ng-bind-html="errorHtml"></div>
+    <div id="outputDiv">
+        <img ng-src="{{api.avatar_url}}" title="{{api.login}}" width="40px" /><b>{{" " + api.login}}</b>
+        <table class="table" style="width: auto;">
+            <thead>
+                <tr ng-model="sortOrder">
+                    <th><a href="" ng-click="sortOrder = '+name'">Repository Name</a></th>
+                    <th><a href="" ng-click="sortOrder = '-stargazers_count'">Stars</a></th>
+                    <th><a href="" ng-click="sortOrder = '+created_at'">Created</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="repo in repos | orderBy:sortOrder">
+                    <td>{{repo.name}}</td>
+                    <td>{{repo.stargazers_count | number}}</td>
+                    <td>{{repo.created_at | date:'dd/MM/yyyy'}}</td>
+            </tbody>
+        </table>
+        <button class="btn btn-default" ng-click="goBack">Back</button>
+    </div>
 </div>

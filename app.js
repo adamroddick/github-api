@@ -14,7 +14,7 @@
             .otherwise({ redirectTo: "/main" });
     });
 
-    $locationProvider.html5Mode(true);
+    //$locationProvider.html5Mode(true); // Haven't read the docs for this yet https://docs.angularjs.org/api/ng/service/$location
 
 }());
 

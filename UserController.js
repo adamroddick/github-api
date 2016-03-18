@@ -32,7 +32,6 @@ app.controller('UserController', function ($scope, $http, $sce, $log, $routePara
     var onComplete = function (response) {
         $scope.api = response.data;
         $('#error').hide();
-        //$('#apiDataDiv').show();
         $http.get($scope.api.repos_url).then(onRepos, onError);
     };
 
@@ -41,14 +40,18 @@ app.controller('UserController', function ($scope, $http, $sce, $log, $routePara
     };
 
     var onError = function (reason) {
-        $('#error').show();
         var errorRaw = "<p id=\"error\" class=\"alert alert-danger\">Alert: Could not fetch the API Data</p>";
         $scope.errorHtml = $sce.trustAsHtml(errorRaw);
+        $('#outputDiv').hide();
     };
 
     var githubAPIGET = function (gituser) {
         $http.get(githubAPI + gituser)
         .then(onComplete, onError);
+    };
+
+    var goBack = function() {
+        $location.path("/main");
     };
 
     githubAPIGET($scope.username);
