@@ -3,14 +3,16 @@
 <head>
     <title>My Angular App</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet" data-require="bootstrap-css@3.3.6" data-semver="3.3.6" />
+    <link href="style.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" data-require="jquery@*" data-semver="2.2.0"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" data-require="bootstrap@3.3.6" data-semver="3.3.6"></script>
     <script data-require="angular.js@~1.4.3" data-semver="1.4.9" src="https://code.angularjs.org/1.4.9/angular.js"></script>
     <script data-require="angular-sanitize@*" data-semver="1.4.3" src="https://code.angularjs.org/1.4.3/angular-sanitize.js"></script>
-    <link href="style.css" rel="stylesheet" />
-    <script src="script.js"></script>
+    <script data-require="angular-route@*" data-semver="1.4.8" src="https://code.angularjs.org/1.4.8/angular-route.js"></script>
+    <script src="app.js"></script>
+    <script src="MainController.js"></script>
 </head>
-<body ng-app="root">
+<body ng-app="app">
 <!--
         
     <div class="col-md-12" ng-controller="AppController">
@@ -25,27 +27,8 @@
         <button class="btn btn-default" ng-click="button1">{{buttonName}}</button>
     </div>
 -->
-    <div class="col-md-4" ng-controller="httpController">
-        <div>
-            <h3 class="alert alert-info">
-                <a ng-href="{{api.url}}">Github API</a>
-            </h3>
-            <button class="btn btn-default" ng-click="breakAPI()">Break API URL</button>
-            <button class="btn btn-default" ng-click="fixAPI()">Fix API URL</button>
-        </div>
-        <br />
-        <h3>Github User Search</h3>
-        <span id="countdown">Time remaining to submit a search: {{countdown}}s</span>
-        <br />
-        <form name="searchUser" ng-submit="search(username)">
-            <input class="form-control" style="width:30%" type="search" required placeholder="Github user to query" ng-model="username" />
-            <br />
-            <input type="submit" class="btn btn-default" value="Search">
-        </form>
-        <br />
-        <div ng-include="'output.html'" ng-show="api"></div>
-        <div ng-bind-html="errorHtml"></div>
-        <p></p>
+    <div class="col-md-4" ng-view>
+    
     </div>
 </body>
 </html>
