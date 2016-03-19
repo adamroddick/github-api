@@ -28,7 +28,7 @@ app.controller('MainController', function ($scope, $interval, $log, $routeParams
         $location.path("/user/" + username);
     };
 
-    startCountdown();
+    //startCountdown();
 
 });
 
