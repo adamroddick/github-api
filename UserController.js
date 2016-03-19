@@ -28,7 +28,8 @@ app.controller('UserController', function ($scope, $http, $sce, $log, $routePara
 */ //breakAPI() and fixAPI()
 
     $scope.repoUrl = "/#/user/" + $scope.username + "/";
-    $log.log($scope.repoUrl);
+    var test = $scope.repoUrl;
+    $log.log(test);
 
     var onComplete = function (response) {
         $scope.api = response.data;
