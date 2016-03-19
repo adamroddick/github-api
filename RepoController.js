@@ -16,13 +16,13 @@ app.controller('RepoController', function ($scope, $http, $location, $routeParam
     };
 
     var onRepoComplete = function (response) {
-        $scope.repoContributors = response.data;
+        $scope.contributors = response.data;
         $log.log(response.data);
     };
 
     var onIssueCountComplete = function (response) {
-        $scope.repoIssueCount = response.data;
-        $log.log("Issue Count: " + $scope.repoIssueCount.number);
+        $scope.issuecount = response.data;
+        $log.log("Issue Count: " + response.data.number);
     };
 
     var onError = function (reason) {
