@@ -11,6 +11,7 @@
                 <tr ng-repeat="contributor in contributors | orderBy:contributions">
                     <td><a href="{{contributor.html_url}}">{{contributor.login}}</a></td>
                     <td>{{contributor.contributions | number}}</td>
+                </tr>
             </tbody>
         </table>
 </div>
