@@ -10,6 +10,7 @@ app.controller('RepoController', function ($scope, $http, $location, $routeParam
         $scope.api = response.data;
         $log.log(response);
         $log.log(response.data);
+        $log.log($scope.api.contributors_url);
         $http.get($scope.api.contributors_url).then(onRepoComplete, onError);
         //$http.get(getIssuesUrl(response.data.issues_url)).then(onIssueCountComplete, onError);
     };
