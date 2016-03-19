@@ -16,7 +16,7 @@ app.controller('MainController', function ($scope, $interval, $log, $routeParams
     var countdownInterval = null;
     var startCountdown = function () {
         // runs the decrementCountdown function, every 1000ms, runs the number of times equal to $scope.countdown, when it is 0 the interval function stops running
-        countdownInterval = $interval(decrementCountdown, 1000, $scope.countdown);
+        //countdownInterval = $interval(decrementCountdown, 1000, $scope.countdown);
     };
 
     $scope.search = function (username) {
