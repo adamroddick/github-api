@@ -1,6 +1,4 @@
-﻿// Code goes here
-
-var app = angular.module('app');
+﻿var app = angular.module('app');
 
 app.controller('UserController', function ($scope, $http, $sce, $log, $routeParams, $location) {
 
@@ -28,6 +26,9 @@ app.controller('UserController', function ($scope, $http, $sce, $log, $routePara
         githubAPIGET(gituser);
     };
 */ //breakAPI() and fixAPI()
+
+    $scope.repoUrl = "#/user/" + $scope.username + "/";
+        
 
     var onComplete = function (response) {
         $scope.api = response.data;
