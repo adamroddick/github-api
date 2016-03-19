@@ -11,13 +11,13 @@ app.controller('RepoController', function ($scope, $http, $location, $routeParam
         $log.log(response);
         $log.log(response.data);
         $log.log(response.data.contributors_url);
-        $http.get($scope.api.contributors_url).then(onRepoComplete, onError);
+        $http.get(response.data.contributors_url).then(onRepoComplete, onError);
         //$http.get(getIssuesUrl(response.data.issues_url)).then(onIssueCountComplete, onError);
     };
 
     var onRepoComplete = function (response) {
         $scope.repoContributors = response.data;
-        $log.log($scope.repoContributors);
+        $log.log(response.data);
     };
 
     var onIssueCountComplete = function (response) {
