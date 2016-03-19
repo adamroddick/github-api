@@ -8,6 +8,9 @@ app.controller('RepoController', function ($scope, $http, $location, $routeParam
 
     var onComplete = function (response) {
         $scope.api = response.data;
+        $log.log($scope.api);
+        $log.log(response);
+        $log.log(response.data);
     };
 
     var onError = function (reason) {
