@@ -16,7 +16,7 @@ app.controller('RepoController', function ($scope, $http, $location, $routeParam
 
     var onRepoComplete = function (response) {
         $scope.repoContributors = response.data;
-        $log.log("Contributors: " + $scope.repoContributors);
+        $log.log($scope.repoContributors);
     };
 
     var onIssueCountComplete = function (response) {
