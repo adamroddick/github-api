@@ -11,7 +11,7 @@ app.controller('RepoController', function ($scope, $http, $location, $routeParam
         $log.log(response);
         $log.log(response.data);
         $http.get(response.data.contributors_url).then(onRepoComplete, onError);
-        $http.get(response.data.contributors_url).then(onIssueCountComplete, onError);
+        $http.get(response.data.issues_url).then(onIssueCountComplete, onError);
     };
 
     var onRepoComplete = function (response) {
