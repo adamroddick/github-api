@@ -5,6 +5,7 @@ app.controller('RepoController', function ($scope, $http, $location, $routeParam
     $scope.username = $routeParams.username;
     $scope.reponame = $routeParams.reponame;
     var githubAPI = "https://api.github.com/repos/";
+
     var onComplete = function (response) {
         $scope.api = response.data;
     };
