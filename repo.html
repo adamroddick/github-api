@@ -1,16 +1,16 @@
 ﻿<div>
-    <h1>Repo Name: {{api.name}}</h1>
-    <table class="table" style="width: auto;">
-        <thead>
-            <tr>
-                <th>Contributor Name</th>
-                <th>Contributions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="contributor in contributors | orderBy:contributions">
-                <td><a href="{{contributor.html_url}}">{{contributor.login}}</a></td>
-                <td>{{contributor.contributions | number}}</td>
-        </tbody>
-    </table>
+    <h3 class="alert alert-info">{{api.name}} Repo by {{api.login}}</h3>
+        <table class="table" style="width: auto;">
+            <thead>
+                <tr>
+                    <th>Contributor Name</th>
+                    <th>Contributions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="contributor in contributors | orderBy:contributions">
+                    <td><a href="{{contributor.html_url}}">{{contributor.login}}</a></td>
+                    <td>{{contributor.contributions | number}}</td>
+            </tbody>
+        </table>
 </div>

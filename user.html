@@ -1,22 +1,23 @@
 ﻿<div>
-    <div ng-bind-html="errorHtml"></div>
-    <div id="outputDiv">
-        <img ng-src="{{api.avatar_url}}" title="{{api.login}}" width="40px" /><a href="{{api.html_url}}"<b>{{" " + api.login}}</b></a>
-        <table class="table" style="width: auto;">
-            <thead>
-                <tr ng-model="sortOrder">
-                    <th><a href="" ng-click="sortOrder = '+name'">Repository Name</a></th>
-                    <th><a href="" ng-click="sortOrder = '-stargazers_count'">Stars</a></th>
-                    <th><a href="" ng-click="sortOrder = '+created_at'">Created</a></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="repo in repos | orderBy:sortOrder">
-                    <td><a href="{{repoUrl + repo.name}}">{{repo.name}}</a></td>
-                    <td>{{repo.stargazers_count | number}}</td>
-                    <td>{{repo.created_at | date:'dd/MM/yyyy'}}</td>
-            </tbody>
-        </table>
-        <a href="/#/main">Back</a>
-    </div>
+    <h3 class="alert alert-info">Github User: {{api.login}}</h3>
+        <div ng-bind-html="errorHtml"></div>
+        <div id="outputDiv">
+            <img ng-src="{{api.avatar_url}}" title="{{api.login}}" width="40px" /><a href="{{api.html_url}}"<b>{{" " + api.login}}</b></a>
+            <table class="table" style="width: auto;">
+                <thead>
+                    <tr ng-model="sortOrder">
+                        <th><a href="" ng-click="sortOrder = '+name'">Repository Name</a></th>
+                        <th><a href="" ng-click="sortOrder = '-stargazers_count'">Stars</a></th>
+                        <th><a href="" ng-click="sortOrder = '+created_at'">Created</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="repo in repos | orderBy:sortOrder">
+                        <td><a href="{{repoUrl + repo.name}}">{{repo.name}}</a></td>
+                        <td>{{repo.stargazers_count | number}}</td>
+                        <td>{{repo.created_at | date:'dd/MM/yyyy'}}</td>
+                </tbody>
+            </table>
+            <a href="/#/main">Back</a>
+        </div>
 </div>
