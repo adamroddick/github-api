@@ -11,17 +11,17 @@ app.controller('RepoController', function ($scope, $http, $location, $routeParam
         $log.log(response);
         $log.log(response.data);
         $http.get(response.data.contributors_url).then(onRepoComplete, onError);
-        $http.get(response.data.issues_url).then(onIssueCountComplete, onError);
+        //$http.get(getIssuesUrl(response.data.issues_url)).then(onIssueCountComplete, onError);
     };
 
     var onRepoComplete = function (response) {
         $scope.repoContributors = response.data;
-        $log.log("Contributors: " + repoContributors);
+        $log.log("Contributors: " + $scope.repoContributors);
     };
 
     var onIssueCountComplete = function (response) {
         $scope.repoIssueCount = response.data;
-        $log.log("Issue Count: " + repoIssueCount.number);
+        $log.log("Issue Count: " + $scope.repoIssueCount.number);
     };
 
     var onError = function (reason) {
