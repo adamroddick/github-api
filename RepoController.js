@@ -4,7 +4,7 @@ app.controller('RepoController', function ($scope, $http, $location, $routeParam
 
     $scope.username = $routeParams.username;
     $scope.reponame = $routeParams.reponame;
-    var githubAPI = "https://api.github.com/repos/";
+    var repoAPI = "https://api.github.com/repos/";
 
     var onComplete = function (response) {
         $scope.api = response.data;
@@ -15,7 +15,7 @@ app.controller('RepoController', function ($scope, $http, $location, $routeParam
     };
 
     var repoGet = function (user, repo) {
-        $http.get(UserController.githubAPI + user + "/" + repo)
+        $http.get(repoAPI + user + "/" + repo)
         .then(onComplete, onError);
     };
     
