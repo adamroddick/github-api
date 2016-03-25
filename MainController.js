@@ -40,34 +40,3 @@ app.controller('MainController', function ($scope, $interval, $log, $routeParams
     $log.warn("Testing $log.warn");
     $log.debug("Testing $log.debug");
     */
-
-/*
-(function () {
-
-    var createWorker = function () {
-
-        var workerCount = 0;
-
-        var task1 = function () {
-            workerCount++
-            //$log("Task1 " + workerCount);
-        };
-
-        var job2 = function () {
-            workerCount++
-            //$log("Job2 " + workerCount);
-        };
-
-        return {
-            job1: task1,
-            job2: job2
-        }
-    };
-
-    var worker = createWorker();
-
-    worker.job1();
-    worker.job2();
-
-}());
-*/

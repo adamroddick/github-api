@@ -10,23 +10,6 @@ app.controller('UserController', function ($scope, $http, $sce, $log, $routePara
     $scope.sortOrder = "-stargazers_count";
     $scope.username = $routeParams.username;
 
-/*    $scope.breakAPI = function () {
-        githubAPI = githubAPIBroken;
-        $log.info("Breaking the API: " + githubAPI);
-        $('#apiDataDiv').hide();
-        githubAPIGET();
-        $('#error').show();
-    };
-
-    $scope.fixAPI = function () {
-        githubAPI = githubAPIWorking;
-        //gituser = "valkyss";
-        $log.info("Fixing the API: " + githubAPI);
-        //hideError();
-        githubAPIGET(gituser);
-    };
-*/ //breakAPI() and fixAPI()
-
     $scope.repoUrl = "/#/user/" + $scope.username + "/";
     var test = $scope.repoUrl;
     $log.log(test);
